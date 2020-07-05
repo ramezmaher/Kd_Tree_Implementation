@@ -1,5 +1,6 @@
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.TreeSet;
 
 import edu.princeton.cs.algs4.Point2D;
 import edu.princeton.cs.algs4.RectHV;
@@ -136,9 +137,37 @@ public class KdTree {
 	}
 	
 	public Iterable<Point2D> range(RectHV rect){
-		return null;
-	}   
+		if(rect == null)
+			throw new IllegalArgumentException();
+		TreeSet<Point2D> set = new TreeSet<Point2D>();
+		Queue<Node> q = new LinkedList<Node>();
+		q.add(root);
+		while(!q.isEmpty()) {
+			Node n = q.poll();
+			if(n==null)
+				continue;
+			if(n.type) {
+				//vertical
+				if(rect.xmin() < n.val.x())
+					q.add(n.left);
+				if(rect.xmax() > n.val.x())
+					q.add(n.right);
+			}
+			else {
+				//horizontal
+				if(rect.ymin() < n.val.y())
+					q.add(n.left);
+				if(rect.ymax() > n.val.y())
+					q.add(n.right);
+			}
+			if(rect.contains(n.val))
+				set.add(n.val);
+		}
+		return set;
+	}
+	
 	public Point2D nearest(Point2D p) {
+		
 		return null;   
 	}       
 	
