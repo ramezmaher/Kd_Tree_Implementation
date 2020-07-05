@@ -41,6 +41,8 @@ public class PointSET {
 		return ans;
 	}             
 	public Point2D nearest(Point2D p) {
+		if(p == null)
+			throw new IllegalArgumentException();
 		double min = Double.MAX_VALUE;
 		Point2D ans = null;
 		for (Point2D q: set)

@@ -1,12 +1,12 @@
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.TreeSet;
 
 import edu.princeton.cs.algs4.Point2D;
 import edu.princeton.cs.algs4.RectHV;
 
 public class KdTree {
 	
+
 	private class Node {
 		
 		private Point2D val;
@@ -24,6 +24,8 @@ public class KdTree {
 		}
 		
 	}
+	
+	
 	
 	private Node root;
 	
@@ -44,6 +46,8 @@ public class KdTree {
 	public void insert(Point2D p) {
 		if(p == null)
 			throw new IllegalArgumentException();
+		if(contains(p))
+			return;
 		if(root == null) {
 			root = new Node(p,true);
 			return;
@@ -139,7 +143,7 @@ public class KdTree {
 	public Iterable<Point2D> range(RectHV rect){
 		if(rect == null)
 			throw new IllegalArgumentException();
-		TreeSet<Point2D> set = new TreeSet<Point2D>();
+		java.util.ArrayList<Point2D> set = new java.util.ArrayList<Point2D>();
 		Queue<Node> q = new LinkedList<Node>();
 		q.add(root);
 		while(!q.isEmpty()) {
