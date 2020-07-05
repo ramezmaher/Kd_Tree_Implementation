@@ -167,8 +167,36 @@ public class KdTree {
 	}
 	
 	public Point2D nearest(Point2D p) {
-		
-		return null;   
-	}       
-	
+		if(p == null)
+			throw new IllegalArgumentException();
+		Point2D nearest = null;
+		double min = Double.MAX_VALUE;
+		Queue<Node> q = new LinkedList<Node>();
+		q.add(root);
+		while(!q.isEmpty()) {
+			Node n = q.poll();
+			if(n == null)
+				continue;
+			if(n.type) {
+				//vertical
+				if(p.x() < n.val.x())
+					q.add(n.left);
+				else 
+					q.add(n.right);
+			}
+			else {
+				//horizontal
+				if(p.y() < n.val.y())
+					q.add(n.left);
+				else
+					q.add(n.right);
+			}
+			if(p.distanceTo(n.val) < min)
+				{
+				min = p.distanceTo(n.val);
+				nearest = n.val;
+				}
+		}
+		return nearest;   
+	}       	
 }

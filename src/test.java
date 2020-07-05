@@ -26,7 +26,7 @@ public class test {
 	        //Draw all the points
 	        mySet.draw();
 
-	    /*    //draw the reference point 
+	        //draw the reference point 
 	        StdDraw.setPenRadius(0.015);
 	        Point2D p = new Point2D(0.5, 0.5);
 	        StdDraw.setPenColor(StdDraw.PINK);
@@ -39,7 +39,7 @@ public class test {
 	        Point2D nearestP = mySet.nearest(p);
 	        System.out.println("The closest point to p is " + nearestP.toString());
 	        StdDraw.setPenColor(StdDraw.PINK);
-	        nearestP.draw();*/
+	        nearestP.draw();
 
 	        //draw point within a range
 	        RectHV myRect = new RectHV(0.1, 0.1, 0.4, 0.4);
